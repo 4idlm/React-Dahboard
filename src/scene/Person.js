@@ -28,7 +28,10 @@ class Persons extends Component {
       }
       else{
         this.setState({
+          user:{
+          ...this.state.user,
           [event.target.name] : event.target.value
+          }
         })
       }
      
@@ -38,8 +41,15 @@ class Persons extends Component {
       event.preventDefault();
        
        this.setState({
-        newuser:true,
-        index:this.state.count + 5
+        // newuser:true,
+        // index:this.state.count + 5
+        ...this.state,
+        profile:{
+
+          People:[
+            ...this.state.profile.People,this.state.user
+          ]
+        }
        })
 
        document.getElementById("create-course-form").reset();
@@ -67,19 +77,19 @@ class Persons extends Component {
     
 render(){
   // console.log(this.state.name)
-  // console.log(this.state)
+  console.log(this.state)
   //  console.log(fig,"array fig")
- let newprofile  = <tr>
- <td >{this.state.index}</td>
-  <td>{this.state.Name}</td>
-  <td>{this.state.Rating}</td>
-  <td><img src={`${this.state.image}`} alt="responsive images" width="50%" class="img-responsive" /></td>
-  <td>{this.state.Description}</td>
-  <td>{this.state.Likes?0:null}</td>
-  <td>{this.state.Dislikes?0:null}</td>
-  <td><button>edit</button></td>
-  <td>{this.state.checkbox?<input type="checkbox" value=""/>:null}</td>
- </tr>
+//  let newprofile  = <tr>
+//  <td >{this.state.index}</td>
+//   <td>{this.state.username}</td>
+//   <td>{this.state.Rating}</td>
+//   <td><img src={`${this.state.image}`} alt="responsive images" width="50%" class="img-responsive" /></td>
+//   <td>{this.state.Description}</td>
+//   <td>{this.state.Likes?0:null}</td>
+//   <td>{this.state.Dislikes?0:null}</td>
+//   <td><button>edit</button></td>
+//   <td>{this.state.checkbox?<input type="checkbox" value=""/>:null}</td>
+//  </tr>
  
   
  let data = this.state.profile.People.map((output,index)=>{
@@ -123,7 +133,7 @@ render(){
     </thead>
     <tbody>
     {data}
-    {this.state.newuser?newprofile:null}
+     
     </tbody>
   </table>
   </div>
@@ -142,19 +152,19 @@ render(){
         <form action="" id="create-course-form">
     <div class="form-group text-left">
       <label for="Name" >Name:</label>
-      <input type="text" class="form-control" id="email" onChange={this.create} placeholder="Name" name="Name"/>
+      <input type="text" class="form-control" id=" " onChange={this.create} placeholder="Name" name="name"/>
     </div>
     <div class="form-group text-left">
       <label for="Image">Image:</label>
-      <input type="file" class="form-control" id="pwd"  onChange={this.create} placeholder="Image" name="Image"/>
+      <input type="file" class="form-control" id=" "  onChange={this.create} placeholder="Image" name="Image"/>
     </div>
     <div class="form-group text-left">
       <label for="Rating">Rating:</label>
-      <input type="number" class="form-control" id="pwd"  onChange={this.create} placeholder="Rating" name="Rating"/>
+      <input type="number" class="form-control" id=" "  onChange={this.create} placeholder="Rating" name="rating"/>
     </div>
     <div class="form-group text-left">
       <label for="Description">Description:</label>
-      <textarea type="text" class="form-control" id="pwd"  onChange={this.create} placeholder="Description" name="Description"/>
+      <textarea type="text" class="form-control" id=""  onChange={this.create} placeholder="Description" name="Description"/>
     </div>
     {/* <div class="form-group text-left">
       <label for="Likes">Likes:</label>
