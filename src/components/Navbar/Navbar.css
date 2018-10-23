@@ -1,0 +1,55 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+.logo{
+    animation: logo infinite 20s linear;
+    height: 66px!important;
+    width: 80px;
+  }
+  
+  .logo-height
+  {
+    height: 72px;
+  }
+  
+  
+  .bar1, .bar2, .bar3 {
+    width: 22px;
+    height: 2px;
+    background-color: #000;
+    margin: 6px 0;
+    transition: 0.4s;
+    
+  }
+  .bg-color {
+    
+    border-bottom: 1px solid #d8e3e7;
+    background-color: #fff!important;
+}
+  .bar1.change {
+    -webkit-transform: rotate(-45deg) translate(-13px, 13px);
+    transform: rotate(-45deg) translate(-13px, 13px);
+  }
+  
+  .bar2.change {opacity: 0;}
+  
+  .bar3.change {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+
+   .openmarginleftcanvas{
+       margin-left: 70px;
+       
+   }
+   .marginleftcanvas{
+       margin-left: 250px;
+   }
+
+   .margin-left-animation{
+    transition: margin-left .5s;
+    
+   }
+   ul.navbar-nav.ml-auto li a {
+    margin-left: 12px;
+    font-size: 14px;
+    color: #000;
+}
