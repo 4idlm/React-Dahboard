@@ -30,10 +30,13 @@ class Persons extends Component {
         this.setState({
           user:{
           ...this.state.user,
-          [event.target.name] : event.target.value
+          [event.target.name] : event.target.value,
+          Likes  : 0,
+          Dislikes:0
           }
         })
       }
+       
      
     }
 
