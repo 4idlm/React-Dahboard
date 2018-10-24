@@ -1,7 +1,7 @@
 import React,{ Component } from "react";
 import './Person.css';
 import JsData from '../scene/Employedata/people_(5).json'
-let fig =[] 
+let point ;
 
 class Persons extends Component {
   
@@ -10,15 +10,19 @@ class Persons extends Component {
       delete:false,
       newuser:false,
       count: 0,
-      checked:false
-    }
- 
+      checked:false,
+      user:{
+        name:'',
+        rating:"",
+        Description:""
+      },
+      btnedit:false,
+      editIndex:null
       
-    componentWillMount(){
-  
- 
-     // console.log(JsData.People[0])
-     }
+    }
+ baseState=this.state.user;
+      
+   
      create = (event)=>{
       event.preventDefault();
       if(event.target.name == "Image" ){
@@ -47,8 +51,9 @@ class Persons extends Component {
         // newuser:true,
         // index:this.state.count + 5
         ...this.state,
-        profile:{
 
+        profile:{
+          
           People:[
             ...this.state.profile.People,this.state.user
           ]
@@ -74,13 +79,55 @@ class Persons extends Component {
   console.log(this.state.profile.People,"p")
  }
  
-     
+ edit = (output,index)=>{
+  console.log(output,"output")
+  console.log(index,"index")
+  this.setState({
+    btnedit:false,
+    editIndex:index,
+    user:{
+      name:output.name,
+      rating:output.rating,
+      img:output.img,
+      Description:output.Description,
+      // like:output.Likes,
+      // dislke:output.Dislikes
+    }
+  })
+   
+ }
+
+ checkprofile = (event)=>{
+   
+   event.preventDefault();
+  let lion =this.state.editIndex;
+  let allData=this.state.profile.People;
+  allData[lion] = this.state.user;
+  this.setState({
+    ...this.state,
+
+    profile:{
+      
+      People:allData
+    }
+  })
 
 
-    
+ }
+      add =()=>{
+        this.setState({
+          btnedit:true,
+          user:this.baseState
+        })
+      }
+ componentDidMount(){
+  console.log(point)
+ }
+
 render(){
   // console.log(this.state.name)
   console.log(this.state)
+  console.log(point,"point the data")
   //  console.log(fig,"array fig")
 //  let newprofile  = <tr>
 //  <td >{this.state.index}</td>
@@ -104,7 +151,7 @@ render(){
         <td>{output.Description}</td>
         <td>{output.Likes}</td>
         <td>{output.Dislikes}</td>
-        <td><button>edit</button></td>
+        <td><button onClick={()=>this.edit(output,index)} data-toggle="modal" data-target="#myModal">edit</button></td>
         <td>{this.state.delete?<input type="checkbox" onChange={()=>this.remove(index)}  />:null}</td>
        </tr>
   })
@@ -117,7 +164,7 @@ render(){
     </div>
     <div className="col-md-6 text-right">
     <button className="btn-info mr-2" onClick={this.add} data-toggle="modal" data-target="#myModal">Add profile +</button>
-    <button className="btn-info" onClick={this.Select}>Delete <span className="glyphicon glyphicon-trash"></span></button>
+    <button className="btn-info" onClick={this.Select} >Delete <span className="glyphicon glyphicon-trash"></span></button>
     </div>
     </div>
       <div class="table-responsive">
@@ -155,19 +202,19 @@ render(){
         <form action="" id="create-course-form">
     <div class="form-group text-left">
       <label for="Name" >Name:</label>
-      <input type="text" class="form-control" id=" " onChange={this.create} placeholder="Name" name="name"/>
+      <input type="text" class="form-control" id=" " value={this.state.user.name} onChange={this.create} placeholder="Name" name="name"/>
     </div>
     <div class="form-group text-left">
       <label for="Image">Image:</label>
-      <input type="file" class="form-control" id=" "  onChange={this.create} placeholder="Image" name="Image"/>
+      <input type="file" class="form-control" id=" "   onChange={this.create} placeholder="Image" name="Image"/>
     </div>
     <div class="form-group text-left">
       <label for="Rating">Rating:</label>
-      <input type="number" class="form-control" id=" "  onChange={this.create} placeholder="Rating" name="rating"/>
+      <input type="number" class="form-control" id=" " value={this.state.user.rating} onChange={this.create} placeholder="Rating" name="rating"/>
     </div>
     <div class="form-group text-left">
       <label for="Description">Description:</label>
-      <textarea type="text" class="form-control" id=""  onChange={this.create} placeholder="Description" name="Description"/>
+      <textarea type="text" class="form-control" id="" value={this.state.user.Description} onChange={this.create} placeholder="Description" name="Description"/>
     </div>
     {/* <div class="form-group text-left">
       <label for="Likes">Likes:</label>
@@ -178,8 +225,10 @@ render(){
       <input type="text" class="form-control" id="pwd"  onChange={this.create} placeholder="Dislikes" name="Dislikes"/>
     </div> */}
     
-     
-    <button type="submit" onClick={this.newprofile} class="btn btn-default">Submit</button>
+     {this.state.btnedit?
+    <button type="submit"  onClick={this.newprofile} class="btn btn-default">Submit</button>
+   : <button type="submit"  onClick={this.checkprofile} class="btn btn-default">update</button>
+     }
   </form>
         </div>
         <div class="modal-footer">
@@ -189,7 +238,10 @@ render(){
       
     </div>
   </div>
+
+
   </div>
+
   
 );
 
