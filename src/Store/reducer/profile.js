@@ -3,6 +3,7 @@ import JsData from '../../scene/Employedata/people_(5).json';
 
 
 const initalstate = {
+  name:"vinoth",
     profile: JsData,
     delete: false,
     newuser: false,
@@ -14,26 +15,32 @@ const initalstate = {
       Description: ""
     },
     btnedit: false,
-    editIndex: null
+    editIndex: null,
+    reduxtate :true,
+   
 }
 
-// updateprofile = (state,action)=>{
-// console.log(state,"reducer vinoth")
-//     return {
-        
-//     }
+const updateprofile = (state =initalstate,action)=>{
+console.log(state.name,"reducer vinoth")
+    return {
+        ...state,
+      name:action.data.name
+    }
 
-// }
+}
 
 const samplereducer = (state = initalstate,action)=>
 {
-// switch(action.type){
-//     case PROFILE_NAME :
-//     return updateprofile(state,action);
-//     default:
+ 
+switch(action.type){
+    case PROFILE_NAME :
+    console.log(state,"data")
+    console.log(action,"action")
+    return  updateprofile(state,action)
+    default:
     return state ;
-// }
-     
+ }
+    
 
 }
 

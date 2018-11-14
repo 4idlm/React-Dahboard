@@ -4,6 +4,7 @@ import Home from "../scene/Home";
 //import Roster from './Roster'
 import EmplyoeeDetails from "../scene/EmplyoeDetails";
 import Persons from '../scene/Person';
+import  Trail from '../scene/Trail'
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -19,7 +20,8 @@ const Main = () => (
       {/* <Route path='/roster' component={Roster}/> */}
       <Route path="/EmplyoeeDetails" component={EmplyoeeDetails} />
       <Route path="/Profile" component={Persons} />
-    </Switch>}
+      <Route path="/Trail" component={Trail} />
+    </Switch>
   </main>
 );
 

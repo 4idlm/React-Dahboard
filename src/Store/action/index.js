@@ -1,1 +1,2 @@
-export {checking} from './profile'
+export {checking} from './profile';
+export {rolling} from './newtask';

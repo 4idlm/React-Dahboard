@@ -37,6 +37,13 @@ class LeftNavbar extends Component {
               />
               <Link to="/Profile"> Person</Link>
             </li>
+            <li>
+              <span
+                class="glyphicon leftnav-gly glyphicon-user"
+                style={{ color: "pink" }}
+              />
+              <Link to="/Trail"> Trail</Link>
+            </li>
           </ul>
         </div>
       </Fragment>

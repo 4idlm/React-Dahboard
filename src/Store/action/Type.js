@@ -1,1 +1,2 @@
 export const PROFILE_NAME = "PROFILE_NAME";
+export const UPDATE_PROFIL_DATA = "UPDATE_PROFIL_DATA";

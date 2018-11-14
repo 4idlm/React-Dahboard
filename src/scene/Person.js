@@ -117,8 +117,8 @@ class Persons extends Component {
     _updateName({ name: "ronaldo" });
   };
 
-  render() {
-    const { name } = this.props;
+   render() {
+  //   const { name } = this.props.name;
     
     // console.log(this.state.name)
     console.log(this.state);
@@ -179,10 +179,10 @@ class Persons extends Component {
             className="col-md-6 text-left"
             style={{ fontSize: "18px", fontWeight: 500 }}
           >
-            Profile List
+            Profile List   <div>{this.props.name}</div>
           </div>
-          {/* <div>{name}</div>
-          <button onClick={this.nameChangeHandler}>change Name</button> */}
+        
+          <button onClick={this.nameChangeHandler}>change Name</button>
           <div className="col-md-6 text-right">
             <button
               className="btn-info mr-2"
@@ -322,7 +322,8 @@ class Persons extends Component {
 const mapStateToProps = state => {
   console.log(state.profile.profile, "Person State");
   return {
-     jsondata: state.profile.profile
+     jsondata: state.profile.profile,
+     name:state.profile.name
   };
 };
 const mapDispatchToProps = dispatch => {
